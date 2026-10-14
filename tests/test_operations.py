@@ -42,3 +42,12 @@ def test_divide_by_zero_raises_value_error_with_message():
 
 def test_divide_zero_by_a_number_is_allowed():
     assert Operations.divide(0, 5) == 0
+
+
+def test_operations_with_zero():
+    assert Operations.add(0, 5) == 5
+    assert Operations.add(5, 0) == 5
+    assert Operations.subtract(5, 0) == 5
+    assert Operations.subtract(0, 5) == -5
+    assert Operations.multiply(0, 5) == 0
+    assert Operations.multiply(5, 0) == 0

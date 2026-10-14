@@ -122,3 +122,12 @@ def test_entry_point_module_loads_without_starting_the_app(monkeypatch, capsys):
     monkeypatch.setattr("builtins.input", fail_if_called)
     runpy.run_module("calculator", run_name="imported")
     assert capsys.readouterr().out == ""
+
+
+def test_each_answer_appears_as_its_own_exact_line(monkeypatch, capsys):
+    lines = ["add 5 3", "subtract 5 3", "multiply 5 3", "divide 6 3", "exit"]
+    output = run_session(monkeypatch, capsys, lines).splitlines()
+    assert "8.0" in output
+    assert "2.0" in output
+    assert "15.0" in output
+    assert output.count("2.0") == 2
